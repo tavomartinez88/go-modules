@@ -8,15 +8,3 @@ type userInterface interface {
 	GetRole() string
 	SetDateTimeBuilding()
 }
-
-func GetBuilder(typeBuilder string) userInterface {
-	if typeBuilder == "ADMIN" {
-		return &adminBuilder{}
-	}
-
-	if typeBuilder == "PROVIDER"{
-		return &providerBuilder{}
-	}
-
-	return &clientBuilder{}
-}

@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	RoleAdmin      = "ADMIN"
+	RoleAdmin      		= "ADMIN"
 	StatusAdmin         = "ACTIVE"
 	FormatDateTimeAdmin = "01-02-2006 15:04:05"
 )
@@ -79,6 +79,11 @@ func (a *adminBuilder) SetStatus() {
 }
 
 func (a *adminBuilder) GetUser() models.User{
+	a.InitUser(a.UserName, a.Password)
+	a.SetRole()
+	a.SetStatus()
+	a.SetDateTimeBuilding()
+	_ = a.EncriptPassword()
 	return models.User{
 		Id: a.Id,
 		UserName: a.UserName,
