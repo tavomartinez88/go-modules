@@ -6,18 +6,18 @@ import (
 )
 
 func TestInitUser(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.InitUser("gustavo", "12345")
 	user := adminBuilder.GetUser()
 	assert.NotNil(t, user.Id)
 	assert.NotNil(t, user.UserName)
 	assert.NotNil(t, user.Password)
 	assert.EqualValues(t, "gustavo", user.UserName)
-	assert.EqualValues(t, "12345", user.Password)
+	assert.True(t, adminBuilder.VerifyPassword("12345"))
 }
 
 func TestSetRole(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.SetRole()
 	user := adminBuilder.GetUser()
 	assert.NotNil(t, user.Role)
@@ -25,7 +25,7 @@ func TestSetRole(t *testing.T) {
 }
 
 func TestGetRole(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.SetRole()
 	role := adminBuilder.GetRole()
 	assert.NotNil(t, role)
@@ -33,7 +33,7 @@ func TestGetRole(t *testing.T) {
 }
 
 func TestSetStatus(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.SetStatus()
 	user := adminBuilder.GetUser()
 	assert.NotNil(t, user.Status)
@@ -41,7 +41,7 @@ func TestSetStatus(t *testing.T) {
 }
 
 func TestSetDateTimeBuilding(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.SetDateTimeBuilding()
 	user := adminBuilder.GetUser()
 	assert.NotNil(t, user.Created)
@@ -49,7 +49,7 @@ func TestSetDateTimeBuilding(t *testing.T) {
 }
 
 func TestEncriptPassword(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.EncriptPassword()
 	user := adminBuilder.GetUser()
 	assert.NotNil(t, user.Password)
@@ -57,14 +57,14 @@ func TestEncriptPassword(t *testing.T) {
 }
 
 func TestVerifyPasswordWhenIsValid(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.InitUser("gustavo", "12345")
 	_ = adminBuilder.EncriptPassword()
 	assert.True(t, adminBuilder.VerifyPassword("12345"))
 }
 
 func TestVerifyPasswordWhenIsInValid(t *testing.T) {
-	adminBuilder := CreateAdminBuilder()
+	adminBuilder := adminBuilder{}
 	adminBuilder.InitUser("gustavo", "12345")
 	_ = adminBuilder.EncriptPassword()
 	assert.False(t, adminBuilder.VerifyPassword("123456"))

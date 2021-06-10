@@ -25,7 +25,7 @@ type clientBuilder struct{
 	Updated string
 }
 
-func CreateClientBuilder() *clientBuilder {
+func newClientBuilder() *clientBuilder {
 	return &clientBuilder{}
 }
 
@@ -44,6 +44,14 @@ func (c *clientBuilder) EncriptPassword() error {
 		c.Password = string(hash)
 		return nil
 	}
+}
+
+func (a *clientBuilder) SetUsername(username string) {
+	a.UserName = username
+}
+
+func (a *clientBuilder) SetPassword(password string) {
+	a.Password = password
 }
 
 func (c *clientBuilder) VerifyPassword(plainPassword string) bool {
@@ -77,16 +85,28 @@ func (c *clientBuilder) SetDateTimeBuilding() {
 //methods concretes
 
 func (c *clientBuilder) GetUser() models.User{
-	return models.User{
+	c.InitUser(c.UserName, c.Password)
+	c.SetRole()
+	c.SetDateTimeBuilding()
+	_ = c.EncriptPassword()
+	user := models.User{
 		Id: c.Id,
 		UserName: c.UserName,
 		Password: c.Password,
 		Role: c.Role,
-		Addresses: []utils.Address{c.Address},
-		Phones: []utils.Phone{c.Phone},
 		Created: c.Created,
 		Updated: c.Updated,
 	}
+
+	if c.Address.Id != "" {
+		user.Addresses = []utils.Address{c.Address}
+	}
+
+	if c.Phone.Id != "" {
+		user.Phones = []utils.Phone{c.Phone}
+	}
+
+	return user
 }
 
 func (c *clientBuilder) SetAddress(address utils.Address) {

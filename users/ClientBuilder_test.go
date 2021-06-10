@@ -7,7 +7,7 @@ import (
 )
 
 func TestClientInitUser(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.InitUser("gustavo", "12345")
 	user := clientBuilder.GetUser()
 	assert.NotNil(t, user.Id)
@@ -18,7 +18,7 @@ func TestClientInitUser(t *testing.T) {
 }
 
 func TestClientSetRole(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.SetRole()
 	user := clientBuilder.GetUser()
 	assert.NotNil(t, user.Role)
@@ -26,7 +26,7 @@ func TestClientSetRole(t *testing.T) {
 }
 
 func TestClientGetRole(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.SetRole()
 	role := clientBuilder.GetRole()
 	assert.NotNil(t, role)
@@ -34,7 +34,7 @@ func TestClientGetRole(t *testing.T) {
 }
 
 func TestClientSetDateTimeBuilding(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.SetDateTimeBuilding()
 	user := clientBuilder.GetUser()
 	assert.NotNil(t, user.Created)
@@ -42,7 +42,7 @@ func TestClientSetDateTimeBuilding(t *testing.T) {
 }
 
 func TestClientEncriptPassword(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.InitUser("gustavo", "12345")
 	_ = clientBuilder.EncriptPassword()
 	user := clientBuilder.GetUser()
@@ -51,14 +51,14 @@ func TestClientEncriptPassword(t *testing.T) {
 }
 
 func TestClientVerifyPasswordWhenIsValid(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.InitUser("gustavo", "12345")
 	clientBuilder.EncriptPassword()
 	assert.True(t, clientBuilder.VerifyPassword("12345"))
 }
 
 func TestClientVerifyPasswordWhenIsInValid(t *testing.T) {
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.InitUser("gustavo", "12345")
 	clientBuilder.EncriptPassword()
 	assert.False(t, clientBuilder.VerifyPassword("123456"))
@@ -77,7 +77,7 @@ func TestClientSetAddress(t *testing.T) {
 		IsDepartament: false,
 	}
 
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.SetAddress(address)
 	assert.NotNil(t, clientBuilder.Address)
 	assert.EqualValues(t,"1", clientBuilder.Address.Id)
@@ -99,7 +99,7 @@ func TestClientBuilder_SetPhone(t *testing.T) {
 		Number: "560056",
 	}
 
-	clientBuilder := CreateClientBuilder()
+	clientBuilder := &clientBuilder{}
 	clientBuilder.SetPhone(phone)
 	assert.NotNil(t, clientBuilder.Phone)
 	assert.EqualValues(t,"1", clientBuilder.Phone.Id)

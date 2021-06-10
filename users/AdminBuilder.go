@@ -24,7 +24,7 @@ type adminBuilder struct{
 	Updated string
 }
 
-func CreateAdminBuilder() *adminBuilder {
+func newAdminBuilder() *adminBuilder {
 	return &adminBuilder{}
 }
 
@@ -73,9 +73,12 @@ func (a *adminBuilder) SetDateTimeBuilding() {
 	a.Updated = now.Format(FormatDateTimeAdmin)
 }
 
-// methods concretes
-func (a *adminBuilder) SetStatus() {
-	a.Status = StatusAdmin
+func (a *adminBuilder) SetUsername(username string) {
+	a.UserName = username
+}
+
+func (a *adminBuilder) SetPassword(password string) {
+	a.Password = password
 }
 
 func (a *adminBuilder) GetUser() models.User{
@@ -95,3 +98,7 @@ func (a *adminBuilder) GetUser() models.User{
 	}
 }
 
+// methods concretes
+func (a *adminBuilder) SetStatus() {
+	a.Status = StatusAdmin
+}
