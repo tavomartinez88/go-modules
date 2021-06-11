@@ -29,13 +29,21 @@ type providerBuilder struct{
 	Updated string
 }
 
-func CreateProviderBuilder() *providerBuilder {
+func newProviderBuilder() *providerBuilder {
 	return &providerBuilder{}
 }
 
 func (p *providerBuilder) InitUser(username string, password string) {
 	p.Id = uuid.New().String()
 	p.UserName = username
+	p.Password = password
+}
+
+func (p *providerBuilder) SetUsername(username string) {
+	p.UserName = username
+}
+
+func (p *providerBuilder) SetPassword(password string) {
 	p.Password = password
 }
 
@@ -84,6 +92,10 @@ func (p *providerBuilder) SetStatus() {
 }
 
 func (p *providerBuilder) GetUser() models.User{
+	p.InitUser(p.UserName, p.Password)
+	p.SetRole()
+	p.SetDateTimeBuilding()
+	_ = p.EncriptPassword()
 	return models.User{
 		Id: p.Id,
 		UserName: p.UserName,

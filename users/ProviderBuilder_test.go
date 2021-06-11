@@ -7,7 +7,7 @@ import (
 )
 
 func TestProviderInitUser(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.InitUser("gustavo", "12345")
 	user := providerBuilder.GetUser()
 	assert.NotNil(t, user.Id)
@@ -18,7 +18,7 @@ func TestProviderInitUser(t *testing.T) {
 }
 
 func TestProviderSetRole(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetRole()
 	user := providerBuilder.GetUser()
 	assert.NotNil(t, user.Role)
@@ -26,7 +26,7 @@ func TestProviderSetRole(t *testing.T) {
 }
 
 func TestProviderGetRole(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetRole()
 	role := providerBuilder.GetRole()
 	assert.NotNil(t, role)
@@ -34,7 +34,7 @@ func TestProviderGetRole(t *testing.T) {
 }
 
 func TestProviderSetStatus(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetStatus()
 	user := providerBuilder.GetUser()
 	assert.NotNil(t, user.Status)
@@ -42,7 +42,7 @@ func TestProviderSetStatus(t *testing.T) {
 }
 
 func TestProviderSetDateTimeBuilding(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetDateTimeBuilding()
 	user := providerBuilder.GetUser()
 	assert.NotNil(t, user.Created)
@@ -50,7 +50,7 @@ func TestProviderSetDateTimeBuilding(t *testing.T) {
 }
 
 func TestProviderEncriptPassword(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.InitUser("gustavo", "12345")
 	_ = providerBuilder.EncriptPassword()
 	user := providerBuilder.GetUser()
@@ -59,21 +59,21 @@ func TestProviderEncriptPassword(t *testing.T) {
 }
 
 func TestProviderVerifyPasswordWhenIsValid(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.InitUser("gustavo", "12345")
 	_ = providerBuilder.EncriptPassword()
 	assert.True(t, providerBuilder.VerifyPassword("12345"))
 }
 
 func TestProviderVerifyPasswordWhenIsInValid(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.InitUser("gustavo", "12345")
 	_ = providerBuilder.EncriptPassword()
 	assert.False(t, providerBuilder.VerifyPassword("123456"))
 }
 
 func TestProviderClientSetAddresses(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	address := utils.Address{
 		Id: "1",
 		Street: "Av Hipolito Yrigoyen",
@@ -104,7 +104,7 @@ func TestProviderClientSetAddresses(t *testing.T) {
 }
 
 func TestProviderClientSetPhones(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	phone := utils.Phone{
 		Id: "1",
 		CountryCode: "+54",
@@ -125,35 +125,35 @@ func TestProviderClientSetPhones(t *testing.T) {
 }
 
 func TestProviderBuilder_SetWebSite(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetWebSite("https://wwww.sarasa.com.ar")
 	assert.NotNil(t, providerBuilder.WebSite)
 	assert.EqualValues(t, "https://wwww.sarasa.com.ar", providerBuilder.WebSite)
 }
 
 func TestProviderBuilder_SetFacebookProfile(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetFacebookProfile("https://wwww.facebook.com/sarasa")
 	assert.NotNil(t, providerBuilder.FacebookProfile)
 	assert.EqualValues(t, "https://wwww.facebook.com/sarasa", providerBuilder.FacebookProfile)
 }
 
 func TestProviderBuilder_SetTwitterProfile(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetTwitterProfile("https://wwww.twitter.com/sarasa")
 	assert.NotNil(t, providerBuilder.TwitterProfile)
 	assert.EqualValues(t, "https://wwww.twitter.com/sarasa", providerBuilder.TwitterProfile)
 }
 
 func TestProviderBuilder_SetInstagramProfile(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	providerBuilder.SetInstagramProfile("https://wwww.instagram.com/sarasa")
 	assert.NotNil(t, providerBuilder.InstagramProfile)
 	assert.EqualValues(t, "https://wwww.instagram.com/sarasa", providerBuilder.InstagramProfile)
 }
 
 func TestProviderBuilder_SetAttentionDays(t *testing.T) {
-	providerBuilder := CreateProviderBuilder()
+	providerBuilder := &providerBuilder{}
 	days := []utils.Day{
 		{
 			Id: "1",
