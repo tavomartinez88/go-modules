@@ -33,4 +33,8 @@ For create an provider :
     - AttentionDays
 - Create an director's instance with builder as parameter
     - newDirector(builder)
-- create an user director.buildUser()      
+- create an user director.buildUser()  
+####For more info
+- run locally: godoc -http=:6060
+- access more info about modules:
+    -  [users-doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/users/)    
