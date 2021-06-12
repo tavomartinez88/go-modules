@@ -1,12 +1,12 @@
 # go-modules
 
-##Users
+## Users
 module for create users as admin, client or provider.
 
-###Install
+### Install
 go get github.com/tavomartinez88/go-modules/users
 
-####Use
+#### Use
 For create an admin :
 - create an instance admin builder newAdminBuilder()
 - Set Username and Password
@@ -35,7 +35,7 @@ For create an provider :
     - newDirector(builder)
 - create an user director.buildUser()  
 
-####For more info
+#### For more info
 - run locally: godoc -http=:6060
 - access more info about modules:
     -  [users-doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/users/)    
