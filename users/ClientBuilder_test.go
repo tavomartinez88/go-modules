@@ -14,7 +14,7 @@ func TestClientInitUser(t *testing.T) {
 	assert.NotNil(t, user.UserName)
 	assert.NotNil(t, user.Password)
 	assert.EqualValues(t, "gustavo", user.UserName)
-	assert.EqualValues(t, "12345", user.Password)
+	assert.True(t, clientBuilder.VerifyPassword("12345"))
 }
 
 func TestClientSetRole(t *testing.T) {

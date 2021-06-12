@@ -14,7 +14,7 @@ func TestProviderInitUser(t *testing.T) {
 	assert.NotNil(t, user.UserName)
 	assert.NotNil(t, user.Password)
 	assert.EqualValues(t, "gustavo", user.UserName)
-	assert.EqualValues(t, "12345", user.Password)
+	assert.True(t, providerBuilder.VerifyPassword("12345"))
 }
 
 func TestProviderSetRole(t *testing.T) {

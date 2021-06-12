@@ -35,7 +35,6 @@ func TestClient_buildUser(t *testing.T) {
 	clientBuilder := newClientBuilder()
 	clientBuilder.SetUsername("gustavo")
 	clientBuilder.SetPassword("martinez")
-	clientBuilder.SetRole()
 	clientBuilder.Address = utils.Address{
 		Id: "1",
 		Street: "Av siempre viva",
@@ -108,7 +107,6 @@ func TestProvider_buildUser(t *testing.T) {
 	providerBuilder := newProviderBuilder()
 	providerBuilder.SetUsername("gustavo")
 	providerBuilder.SetPassword("martinez")
-	providerBuilder.SetRole()
 	providerBuilder.SetAddresses([]utils.Address{
 		{
 			Id: "1",
