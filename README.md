@@ -34,6 +34,7 @@ For create an provider :
 - Create an director's instance with builder as parameter
     - newDirector(builder)
 - create an user director.buildUser()  
+
 ####For more info
 - run locally: godoc -http=:6060
 - access more info about modules:
