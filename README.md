@@ -39,3 +39,18 @@ For create an provider :
 - run locally: godoc -http=:6060
 - access more info about modules:
     -  [users-doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/users/)    
+    
+## Categories and SubCategories
+module for create categories and sub-categories
+
+### Install
+go get github.com/tavomartinez88/go-modules/categories   
+
+#### Use
+- Create builder:
+    - For category use the func builders.CreateCategoryBuild()
+    - For sub-category use the func builders.CreateSubCategoryBuild()
+- Create director:
+    - CreateCategoryDirector(builder)
+- Generate data using director.Build(name, refId, isAvailable)
+        
