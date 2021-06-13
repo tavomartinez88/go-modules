@@ -38,7 +38,7 @@ For create an provider :
 #### For more info
 - run locally: godoc -http=:6060
 - access more info about modules:
-    -  [users-doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/users/)    
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/users/)    
     
 ## Categories and SubCategories
 module for create categories and sub-categories
@@ -53,4 +53,8 @@ go get github.com/tavomartinez88/go-modules/categories
 - Create director:
     - CreateCategoryDirector(builder)
 - Generate data using director.Build(name, refId, isAvailable)
-        
+
+#### For more info
+- run locally: godoc -http=:6060
+- access more info about modules:
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/categories/)        
