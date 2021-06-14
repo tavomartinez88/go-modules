@@ -107,6 +107,7 @@ func (p *providerBuilder) GetUser() models.User{
 		InstagramProfile: p.InstagramProfile,
 		TwitterProfile: p.TwitterProfile,
 		Phones: p.Phones,
+		UserNameVerified: false,
 		Status: p.Status,
 		AttentionDays: p.AttentionDays,
 		Created: p.Created,

@@ -57,4 +57,23 @@ go get github.com/tavomartinez88/go-modules/categories
 #### For more info
 - run locally: godoc -http=:6060
 - access more info about modules:
-    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/categories/)        
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/categories/) 
+    
+## Products
+module for create categories and sub-categories
+
+### Install
+go get github.com/tavomartinez88/go-modules/products
+#### Use
+- Create builder:
+    - Use the func builders.CreateProductBuilder()
+    - Set fields name, price, description short, description large, hasStock, and IdRef(it's reference to category or subcategory)
+- Create director:
+    - CreateProductDirector(builder)
+
+#### For more info
+- run locally: godoc -http=:6060
+- access more info about modules:
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/products/)
+    
+              

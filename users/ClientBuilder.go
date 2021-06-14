@@ -95,6 +95,7 @@ func (c *clientBuilder) GetUser() models.User{
 		Password: c.Password,
 		Role: c.Role,
 		Created: c.Created,
+		UserNameVerified: false,
 		Updated: c.Updated,
 	}
 

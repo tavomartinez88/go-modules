@@ -5,6 +5,7 @@ import "github.com/tavomartinez88/go-modules/users/models/utils"
 type User struct {
 	Id string `json:"id"`
 	UserName string `json:"user_name"`
+	UserNameVerified bool `json:"user_name_verified"`
 	Password string `json:"password"`
 	Role string `json:"role"`
 	Addresses []utils.Address `json:"addresses"`

@@ -28,6 +28,7 @@ func TestAdmin_buildUser(t *testing.T) {
 	assert.NotNil(t, user.Created)
 	assert.NotNil(t, user.Updated)
 	assert.True(t, len(user.Created)>0)
+	assert.False(t, user.UserNameVerified)
 	assert.NotNil(t, len(user.Updated)>0)
 }
 
@@ -98,6 +99,7 @@ func TestClient_buildUser(t *testing.T) {
 	assert.Nil(t, user.AttentionDays)
 	assert.NotNil(t, user.Created)
 	assert.NotNil(t, user.Updated)
+	assert.False(t, user.UserNameVerified)
 	assert.True(t, len(user.Created)>0)
 	assert.NotNil(t, len(user.Updated)>0)
 }
@@ -180,5 +182,6 @@ func TestProvider_buildUser(t *testing.T) {
 	assert.NotNil(t, user.Created)
 	assert.NotNil(t, user.Updated)
 	assert.True(t, len(user.Created)>0)
+	assert.False(t, user.UserNameVerified)
 	assert.NotNil(t, len(user.Updated)>0)
 }

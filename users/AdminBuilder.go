@@ -106,6 +106,7 @@ func (a *adminBuilder) GetUser() models.User{
 		Role: a.Role,
 		Status: a.Status,
 		Created: a.Created,
+		UserNameVerified: false,
 		Updated: a.Updated,
 	}
 }
