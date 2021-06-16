@@ -2,7 +2,7 @@ package builders
 
 import (
 	"github.com/google/uuid"
-	model "github.com/tavomartinez88/go-modules/orders/models"
+	model "github.com/tavomartinez88/go-modules/orders/order/models"
 	"github.com/tavomartinez88/go-modules/products/models"
 	"time"
 )
@@ -57,7 +57,7 @@ func contains(items []model.ProductItem, item model.ProductItem) bool {
 	return false
 }
 
-func (o *order) getListBuildProductItem() []model.ProductItem{
+func (o *order) getListBuildProductItem() []model.ProductItem {
 	var productItems = []model.ProductItem{}
 	for _, product := range o.Products {
 		productItem := o.buildProductItem(product)

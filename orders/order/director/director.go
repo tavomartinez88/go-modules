@@ -1,8 +1,8 @@
 package director
 
 import (
-	"github.com/tavomartinez88/go-modules/orders/interfaces"
-	"github.com/tavomartinez88/go-modules/orders/models"
+	"github.com/tavomartinez88/go-modules/orders/order/interfaces"
+	"github.com/tavomartinez88/go-modules/orders/order/models"
 )
 
 type director struct {

@@ -2,7 +2,7 @@ package director
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/tavomartinez88/go-modules/orders/builders"
+	"github.com/tavomartinez88/go-modules/orders/order/builders"
 	buildersProduct "github.com/tavomartinez88/go-modules/products/builders"
 	directorProduct "github.com/tavomartinez88/go-modules/products/director"
 	"github.com/tavomartinez88/go-modules/products/models"
