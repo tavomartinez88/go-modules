@@ -6,5 +6,5 @@ import (
 
 type IOrder interface {
 	Init()
-	Build() model.Order
+	Build() (model.Order, error)
 }

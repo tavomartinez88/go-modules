@@ -5,7 +5,5 @@ import (
 )
 
 type IPayment interface {
-	SetType(wayPayment string)
-	SetValue(value float64)
 	GetPayment() modelsPayment.Payment
 }

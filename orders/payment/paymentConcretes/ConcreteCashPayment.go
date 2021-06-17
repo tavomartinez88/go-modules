@@ -7,18 +7,9 @@ type paymentCash struct {
 	value float64
 }
 
-func (c *paymentCash) SetType(wayPayment string) {
-	c.typePayment = wayPayment
-}
-
-func (c *paymentCash) SetValue(value float64) {
-	c.value = value
-}
-
 func (c *paymentCash) GetPayment() modelsPayment.Payment {
 	return modelsPayment.Payment{
 		Type: c.typePayment,
-		PercentageForCard: nil,
 		CountMoneyToPay: c.value,
 	}
 }

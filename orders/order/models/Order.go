@@ -1,5 +1,7 @@
 package models
 
+import "github.com/tavomartinez88/go-modules/orders/payment/interfaces"
+
 type Order struct {
 	Id string `json:"id"`
 	Amount float64 `json:"amount"`
@@ -8,6 +10,7 @@ type Order struct {
 	LastName string `json:"last_name"`
 	BirthDate string `json:"birth_date"`
 	PhoneNumber string `json:"phone_number"`
+	Payment interfaces.IPayment
 	Created string `json:"created"`
 	Updated string `json:"updated"`
 }

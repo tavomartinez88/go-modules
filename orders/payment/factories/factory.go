@@ -11,7 +11,12 @@ const (
 	CASH = "CASH"
 )
 
-func getPayment(typePayment string, value float64) (interfaces.IPayment, error) {
+func GetPayment(typePayment string, value float64) (interfaces.IPayment, error) {
+
+	if typePayment == ""  {
+		return nil, errors.New("InfoPayment.Type is required")
+	}
+
 	if  typePayment == CARD{
 		return paymentConcretes.CreateCardPayment(value), nil
 	}

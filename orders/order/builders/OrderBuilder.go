@@ -3,6 +3,7 @@ package builders
 import (
 	"github.com/google/uuid"
 	model "github.com/tavomartinez88/go-modules/orders/order/models"
+	"github.com/tavomartinez88/go-modules/orders/payment/factories"
 	"github.com/tavomartinez88/go-modules/products/models"
 	"time"
 )
@@ -19,14 +20,58 @@ type order struct {
 	LastName string `json:"last_name"`
 	BirthDate string `json:"birth_date"`
 	PhoneNumber string `json:"phone_number"`
+	InfoPayment InfoPayment `json:"info_payment"`
 	created string
 	updated string
+}
+
+type InfoPayment struct {
+	Type string
+	Value float64
 }
 
 func CreateOrderBuilder() *order {
 	return &order{}
 }
 
+func (o *order) Init() {
+	var totalPrice float64 = 0
+	o.id = uuid.New().String()
+
+	for _, product := range o.Products  {
+		totalPrice = totalPrice + product.Price
+	}
+
+	o.amount = totalPrice
+
+	now := time.Now()
+	o.created = now.Format(FormatDateTimeProduct)
+	o.updated = now.Format(FormatDateTimeProduct)
+}
+
+func (o *order) Build() (model.Order, error) {
+	o.Init()
+	wp, err :=  factories.GetPayment(o.InfoPayment.Type, o.InfoPayment.Value)
+
+	if err != nil {
+		return model.Order{},err
+	}
+
+	return model.Order{
+		Id: o.id,
+		Amount: o.amount,
+		Products: o.getListBuildProductItem(),
+		FirstName: o.FirstName,
+		LastName: o.LastName,
+		BirthDate: o.BirthDate,
+		PhoneNumber: o.PhoneNumber,
+		Payment: wp,
+		Created: o.created,
+		Updated: o.updated,
+	},nil
+}
+
+//methods utils
 func (o *order) buildProductItem(product models.Product) model.ProductItem {
 	return model.ProductItem{
 		Id: product.Id,
@@ -67,35 +112,5 @@ func (o *order) getListBuildProductItem() []model.ProductItem {
 	}
 
 	return productItems
-}
-
-func (o *order) Init() {
-	var totalPrice float64 = 0
-	o.id = uuid.New().String()
-
-	for _, product := range o.Products  {
-		totalPrice = totalPrice + product.Price
-	}
-
-	o.amount = totalPrice
-
-	now := time.Now()
-	o.created = now.Format(FormatDateTimeProduct)
-	o.updated = now.Format(FormatDateTimeProduct)
-}
-
-func (o *order) Build() model.Order {
-	o.Init()
-	return model.Order{
-		Id: o.id,
-		Amount: o.amount,
-		Products: o.getListBuildProductItem(),
-		FirstName: o.FirstName,
-		LastName: o.LastName,
-		BirthDate: o.BirthDate,
-		PhoneNumber: o.PhoneNumber,
-		Created: o.created,
-		Updated: o.updated,
-	}
 }
 

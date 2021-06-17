@@ -15,6 +15,6 @@ func CreateOrderDirector(b interfaces.IOrder) *director {
 	}
 }
 
-func (d *director) Build() models.Order {
+func (d *director) Build() (models.Order, error) {
 	return d.builder.Build()
 }
