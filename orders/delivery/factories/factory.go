@@ -10,18 +10,18 @@ const TypeDeliveryOnSite = "ON_SITE"
 const TypeTakeAWay = "TAKE_A_WAY"
 const TypeDelivery = "DELIVERY"
 
-func GetDelivery(typeDelivery string, description string, address ...utils.Address) (interfaces.IDelivery, error) {
+func GetDelivery(typeDelivery string, description string, addresses ...utils.Address) (interfaces.IDelivery, error) {
 
 	if typeDelivery == ""  {
-		return nil, errors.New("InfoDelivery.Type is required")
+		return nil, errors.New("Type delivery is required")
 	}
 
-	if (typeDelivery == TypeDeliveryOnSite || typeDelivery == TypeTakeAWay) && description == ""{
-		return nil, errors.New("InfoDelivery.Description is required")
+	if (typeDelivery == TypeDeliveryOnSite) && description == "" {
+		return nil, errors.New("Description is required if type delivery is on-site or take a way")
 	}
 
-	if typeDelivery == TypeDelivery && address == nil {
-		return nil, errors.New("InfoDelivery.Address is required")
+	if typeDelivery == TypeDelivery && addresses == nil {
+		return nil, errors.New("Address is required if type delivery is delivery")
 	}
 
 	if  typeDelivery == TypeDeliveryOnSite {
@@ -29,12 +29,12 @@ func GetDelivery(typeDelivery string, description string, address ...utils.Addre
 	}
 
 	if  typeDelivery == TypeDelivery {
-		return methodsConcretes.CreateToAddressDelivery(address[0]), nil
+		return methodsConcretes.CreateToAddressDelivery(addresses[0]), nil
 	}
 
 	if  typeDelivery == TypeTakeAWay {
-		return methodsConcretes.CreateOnSiteDelivery(description), nil
+		return methodsConcretes.CreateTakeAwayDelivery(), nil
 	}
 
-	return nil, errors.New("Wrong delivery type passed.")
+	return nil, errors.New("Type delivery not supported")
 }

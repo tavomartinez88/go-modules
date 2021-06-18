@@ -6,8 +6,6 @@ type AwayTake struct {
 	takeAway
 }
 
-func CreateTakeAwayDelivery(v string) interfaces.IDelivery {
-	return &AwayTake{
-		takeAway{},
-	}
+func CreateTakeAwayDelivery() interfaces.IDelivery {
+	return &AwayTake{}
 }

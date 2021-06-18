@@ -6,7 +6,7 @@ type takeAway struct {
 }
 
 const TypeTakeAWay = "TAKE_A_WAY"
-const description = "lo retiro personalmente"
+const description = "se retira personalmente"
 
 func (d *takeAway) GetDeliveryMethod() models.Delivery {
 	return models.Delivery{
