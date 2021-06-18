@@ -76,4 +76,23 @@ go get github.com/tavomartinez88/go-modules/products
 - access more info about modules:
     -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/products/)
     
-              
+## Orders
+module for create orders
+
+### Install
+go get github.com/tavomartinez88/go-modules/orders
+#### Use
+- Create builders:
+    - CreateProductBuilder()
+    - CreateOrderBuilder()
+- Create directors:
+    - CreateProductDirector(builder)
+    - CreateOrderDirector(builderOrder)
+- Set fields to Order, Products, Payment and Delivery
+- For get Order use:
+    - directorOrder.Build()
+
+#### For more info
+- run locally: godoc -http=:6060
+- access more info about modules:
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/orders/)              

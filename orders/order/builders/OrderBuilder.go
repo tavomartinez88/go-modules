@@ -2,9 +2,11 @@ package builders
 
 import (
 	"github.com/google/uuid"
+	factoryDelivery "github.com/tavomartinez88/go-modules/orders/delivery/factories"
 	model "github.com/tavomartinez88/go-modules/orders/order/models"
 	"github.com/tavomartinez88/go-modules/orders/payment/factories"
 	"github.com/tavomartinez88/go-modules/products/models"
+	"github.com/tavomartinez88/go-modules/users/models/utils"
 	"time"
 )
 
@@ -21,6 +23,7 @@ type order struct {
 	BirthDate string `json:"birth_date"`
 	PhoneNumber string `json:"phone_number"`
 	InfoPayment InfoPayment `json:"info_payment"`
+	InfoDelivery InfoDelivery `json:"infor_delivery"`
 	created string
 	updated string
 }
@@ -28,6 +31,12 @@ type order struct {
 type InfoPayment struct {
 	Type string
 	Value float64
+}
+
+type InfoDelivery struct {
+	Type string
+	Description string
+	Address utils.Address
 }
 
 func CreateOrderBuilder() *order {
@@ -57,6 +66,11 @@ func (o *order) Build() (model.Order, error) {
 		return model.Order{},err
 	}
 
+	delivery, err := factoryDelivery.GetDelivery(o.InfoDelivery.Type, o.InfoDelivery.Description, o.InfoDelivery.Address)
+	if err != nil {
+		return model.Order{},err
+	}
+
 	return model.Order{
 		Id: o.id,
 		Amount: o.amount,
@@ -66,6 +80,7 @@ func (o *order) Build() (model.Order, error) {
 		BirthDate: o.BirthDate,
 		PhoneNumber: o.PhoneNumber,
 		Payment: wp,
+		Delivery: delivery,
 		Created: o.created,
 		Updated: o.updated,
 	},nil
