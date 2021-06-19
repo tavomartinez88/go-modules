@@ -96,3 +96,17 @@ go get github.com/tavomartinez88/go-modules/orders
 - run locally: godoc -http=:6060
 - access more info about modules:
     -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/orders/)              
+
+## Logger
+module for get an logger to log events and other topics
+
+### Install
+go get github.com/tavomartinez88/go-modules/logger
+#### Use
+- Get logger using:
+    - GetLogger() 
+
+#### For more info
+- run locally: godoc -http=:6060
+- access more info about modules:
+    -  [doc](http://localhost:6060/pkg/github.com/tavomartinez88/go-modules/logger/)    
