@@ -38,7 +38,7 @@ func TestProviderSetStatus(t *testing.T) {
 	providerBuilder.SetStatus()
 	user := providerBuilder.GetUser()
 	assert.NotNil(t, user.Status)
-	assert.EqualValues(t, "ACTIVE", user.Status)
+	assert.EqualValues(t, "PENDING", user.Status)
 }
 
 func TestProviderSetDateTimeBuilding(t *testing.T) {

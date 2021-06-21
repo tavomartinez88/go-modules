@@ -10,7 +10,7 @@ import (
 )
 
 const RoleProvider = "PROVIDER"
-const StatusProvider = "ACTIVE"
+const StatusProvider = "PENDING"
 
 type providerBuilder struct{
 	Id string
